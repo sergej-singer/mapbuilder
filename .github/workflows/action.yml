@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - edgg
 
 env:
   CI_PROJECT_PATH: sergej-singer/mapbuilder
