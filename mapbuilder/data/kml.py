@@ -57,7 +57,7 @@ class KMLParser:
                     geom = Point(self.parse_pos_list(placemark["Point"]["coordinates"]))
                 elif "MultiGeometry" in placemark:
                     if len(placemark["MultiGeometry"]) != 1:
-                        msg = f"Placemark '{placemark["name"]}': in MultiGeometry only one type of Geometry is allowed"
+                        msg = f"Placemark {placemark['name']}: in MultiGeometry only one type of Geometry is allowed"
                         raise ValueError(msg)
                     
                     geom = self.parse_multigeometry(placemark["MultiGeometry"])
