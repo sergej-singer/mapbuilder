@@ -50,7 +50,7 @@
               };
 
               docker = pkgs.dockerTools.buildLayeredImage {
-                name = "ghcr.io/vatger-nav/mapbuilder";
+                name = "ghcr.io/sergej-singer/mapbuilder";
                 tag = "latest";
 
                 contents = [
