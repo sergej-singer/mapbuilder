@@ -46,6 +46,7 @@ class JinjaHandler:
             simplify=simplify,
             to_line=to_line,
             to_coordline=to_coordline,
+            to_coordtype=to_coordtype,
             to_poly=to_poly,
             join_segments=join_segments,
             filter_smaller_than=filter_smaller_than,
@@ -257,3 +258,20 @@ def sector_sub(a, b):
 
 def sector_and(a, b):
     return [item for item in a if item in b]
+
+def to_coordtype(geometries, designator: str, color: str | None = None, areatype: str = "OTHER", drawtype: str = "REGION", hatchtype: str | None = None ):
+    lines = [f"// {designator}"] if designator else []
+
+    if color is not None:
+        lines.append(f"COLOR:{color}")
+
+    for geometry in _get_geoms(geometries):
+        if hatchtype is None:
+            lines.append(f"COORDTYPE:{areatype}:{drawtype}")
+        else:
+            lines.append(f"COORDTYPE:{areatype}:{drawtype}:{hatchtype}")
+
+        for point in geometry.coords:
+            lines.append(f"COORD:{coord2es((point[0], point[1]))}")
+    
+    return "\n".join(lines)
