@@ -262,7 +262,7 @@ def sector_and(a, b):
 def to_coordtype(geometries, designator: str, color: str | None = None, areatype: str = "OTHER", drawtype: str = "REGION", hatchtype: str | None = None ):
     lines = [f"// {designator}"] if designator else []
 
-    if color is not None:
+    if color:
         lines.append(f"COLOR:{color}")
 
     for geometry in _get_geoms(geometries):
